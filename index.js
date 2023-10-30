@@ -10,7 +10,6 @@ const port = process.env.Port || 5000;
 app.use(cors());
 app.use(express.json());
 
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.cd6ahti.mongodb.net/?retryWrites=true&w=majority`;
 
