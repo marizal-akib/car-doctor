@@ -45,11 +45,12 @@ const verifyToken = (req,res, next)=>{
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded)=>{
         if(err){
-            return res.send({massage: 'unauthorized access'})
+            return res.status(401).send({massage: 'unauthorized access'})
         }
         req.user = decoded
+        next();
     })
-    next();
+
 }
 
 async function run() {
@@ -108,7 +109,6 @@ async function run() {
             if(req.user.email !== req.query.email){
                 return res.status(403).send({massage: 'forbidden access'})
             }
-           
             let query = {}
             if (req.query?.email) {
                 query = { email: req.query.email }
